@@ -144,6 +144,9 @@ const StylesSendImage = {
   width: "42px",
   background: "#4548E8",
   boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.10)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 };
 
 export {

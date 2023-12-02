@@ -1,10 +1,10 @@
-import { Box, Stack, Typography } from "@mui/material";
-import Image from "next/image";
+"use client";
+import { Stack } from "@mui/material";
 import React from "react";
 import BlogItem1 from "../../assets/BlogItem1.png";
 import BlogItem2 from "../../assets/BlogItem2.png";
 import BlogItem3 from "../../assets/BlogItem3.png";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import BlogItem from "./BlogItem";
 
 const BlogData = [
   {
@@ -36,25 +36,6 @@ const BlogItems = () => {
           <BlogItem {...item} key={item.title} />
         ))}
       </Stack>
-    </>
-  );
-};
-
-const BlogItem = ({ img, title, content }) => {
-  return (
-    <>
-      <Stack sx={{ flexDirection: "row", gap: 3 }}>
-        <Box>
-          <Image src={img} alt={"blog"} height={150} />
-        </Box>
-        <Stack sx={{ justifyContent: "center" }}>
-          <Typography variant="h6">{title}</Typography>
-          <Typography variant="body2" sx={{ color: "#717171" }}>
-            {content}
-          </Typography>
-        </Stack>
-      </Stack>
-      <Box style={{ width: "100%", height: "1px", background: "#D9D9D9" }} />
     </>
   );
 };

@@ -1,30 +1,60 @@
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+"use client";
+
+import {
+  Box,
+  Button,
+  Stack,
+  styled,
+  TextField,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import phone from "../../assets/phone.png";
 import icon1 from "../../assets/icon1.png";
 
 const ContactForm = () => {
+  const StyledImage = styled(Image)(({ theme }) => ({
+    [theme.breakpoints.up("xl")]: {
+      height: "500px !important",
+      objectFit: "contain",
+    },
+    [theme.breakpoints.down("xl")]: {
+      height: "500px !important",
+    },
+    [theme.breakpoints.down("lg")]: {
+      height: "450px !important",
+    },
+    [theme.breakpoints.down("md")]: {
+      height: "500px !important",
+      objectFit: "contain",
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: "350px !important",
+      width: "100% !important",
+      objectFit: "fill",
+    },
+    objectFit: "fill",
+  }));
   return (
     <>
       <Stack
         sx={{
           width: "100%",
-          backgroundColor: "#fff",
           boxShadow: "1px 1px 30px rgba(0, 0, 0, 0.3)",
           borderRadius: "20px",
-          mt: { md: 10 },
+          mt: { xs: 6, sm: 7, md: 10 },
           flexDirection: { xs: "column", md: "row" },
           position: "relative",
-          px: 6,
-          py: 3,
+          px: { xs: 1, sm: 3, md: 6 },
+          gap: 2,
         }}
       >
         <Box
           sx={{
             position: "absolute",
             bottom: "-60px",
-            right: "20px",
+            left: "20px",
           }}
         >
           <Image src={icon1} alt={"icon1"} height={130} />
@@ -37,9 +67,11 @@ const ContactForm = () => {
             alignItems: "center",
             flexDirection: "column",
             order: { xs: 1, md: 0 },
+            pt: { md: 6 },
+            pb: { xs: 10, md: 10, lg: 10 },
           }}
         >
-          <Stack sx={{ gap: 3, width: "100%" }}>
+          <Stack sx={{ gap: 3, width: "100%", px: { xs: 2, md: 0 } }}>
             <Box>
               <Typography variant="body2" fontWeight="bold">
                 ENTER YOUR EMAIL FOR A CHANCE TO WIN AN
@@ -143,14 +175,15 @@ const ContactForm = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            py: { xs: 4, lg: 6 },
           }}
         >
-          <Image
+          <StyledImage
             src={phone}
             alt="phone"
-            height="650"
-            width="650"
-            style={{ position: "relative", bottom: "30px" }}
+            style={{
+              width: "100%",
+            }}
           />
         </Box>
       </Stack>

@@ -1,4 +1,6 @@
-import { Box, Typography } from "@mui/material";
+"use client";
+
+import { Box, styled, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import AboutUsLayout from "./AboutUsLayout";
@@ -41,17 +43,43 @@ const left = () => {
 };
 
 const right = () => {
+  const StyledImage = styled(Image)(({ theme }) => ({
+    [theme.breakpoints.up("xl")]: {
+      height: "400px!important",
+    },
+    [theme.breakpoints.down("xl")]: {
+      height: "320px!important",
+    },
+    [theme.breakpoints.down("lg")]: {
+      height: "320px!important",
+    },
+    [theme.breakpoints.down("md")]: {
+      height: "500px!important",
+      objectFit: "contain",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100% !important",
+      height: "300px!important",
+      objectFit: "fill",
+    },
+    width: "100%",
+  }));
+
   return (
-    <>
-      <Image src={party} alt="party" height={300} />
-    </>
+    <Box width="100%">
+      <StyledImage
+        src={party}
+        alt="party"
+        style={{ width: "100%", objectFit: "fill" }}
+      />
+    </Box>
   );
 };
 
 const AboutUs = () => {
   return (
     <>
-      <Box mt={{ xs: 7, md: 14 }} px={8}>
+      <Box mt={{ xs: 7, md: 14 }} px={{ md: 8 }}>
         <AboutUsLayout left={left} right={right} />
       </Box>
     </>

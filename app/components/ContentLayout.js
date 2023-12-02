@@ -4,7 +4,7 @@ import React from "react";
 const ContentLayout = ({ title, titleContent, children }) => {
   return (
     <>
-      <Box sx={{ mt: { xs: 7, md: 14 } }}>
+      <Box sx={{ mt: { xs: 6, sm: 7, lg: 14 } }}>
         <Typography variant="h4" fontWeight="bold" textAlign="center">
           {title}
         </Typography>
@@ -16,7 +16,7 @@ const ContentLayout = ({ title, titleContent, children }) => {
         >
           {titleContent}
         </Typography>
-        <Box mt={5}>{children}</Box>
+        <Box mt={{ xs: 4, sm: 5 }}>{children}</Box>
       </Box>
     </>
   );

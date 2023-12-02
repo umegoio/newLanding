@@ -46,7 +46,11 @@ const index = () => {
             <Typography
               variant="h4"
               textAlign="center"
-              sx={{ px: 10, fontWeight: 540 }}
+              sx={{
+                px: { xs: 0, sm: 6, md: 10 },
+                fontWeight: 540,
+                fontSize: { xs: "24px", md: "34px" },
+              }}
             >
               Be part of our mission for experiences that build vibrant
               communities and foster lasting friendships

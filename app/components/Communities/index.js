@@ -1,4 +1,6 @@
-import { Box, Stack, Typography } from "@mui/material";
+"use client";
+
+import { Box, Stack, styled, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import ContentLayout from "../ContentLayout";
@@ -6,6 +8,26 @@ import communityOne from "../../assets/communityOne.png";
 import communityTwo from "../../assets/communityTwo.png";
 
 const index = () => {
+  const StyledImage = styled(Image)(({ theme }) => ({
+    [theme.breakpoints.up("lg")]: {
+      height: "600px !important",
+      width: "420px !important",
+    },
+    [theme.breakpoints.down("lg")]: {
+      height: "500px !important",
+      width: "380px !important",
+    },
+    [theme.breakpoints.down("md")]: {
+      height: "600px !important",
+      width: "514px !important",
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: "550px !important",
+      width: "100% !important",
+    },
+    objectFit: "fill",
+  }));
+
   return (
     <>
       <ContentLayout
@@ -15,10 +37,10 @@ const index = () => {
         <Box
           sx={{
             display: "flex",
-            px: { xs: 4, md: 8 },
+            px: { xs: 0, md: 8 },
             justifyContent: "center",
             gap: { xs: 14, md: 16 },
-            mt: 7,
+            mt: { xs: 0, sm: 2, md: 8 },
             flexDirection: { xs: "column", md: "row" },
           }}
         >
@@ -28,33 +50,30 @@ const index = () => {
               alignItems: "center",
             }}
           >
-            <Box mb={3} sx={{ alignSelf: "flex-start", px: { xs: 0, md: 8 } }}>
-              <Typography variant="h4" fontWeight="560">
-                Shared Hobbies, <br />
-                United
-                <br /> Community
-              </Typography>
-            </Box>
-            <Box position="relative">
-              <Image src={communityOne} alt="communities" />
+            <Box
+              position="relative"
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <StyledImage src={communityOne} alt="communities" />
               <Box
                 sx={{
                   display: "flex",
                   backgroundColor: "#fff",
                   boxShadow: "1px 1px 30px rgba(0, 0, 0, 0.3)",
                   width: "300px",
-                  height: "100px",
                   overflow: "hidden",
                   boxSizing: "content-box",
                   padding: "14px 0px",
                   borderRadius: "20px",
                   gap: 1,
                   position: "absolute",
-                  right: { md: "-80px" },
-                  top: { md: "50%" },
-                  bottom: { xs: "-50px", md: "" },
-                  left: { xs: "50%", md: "" },
-                  transform: { xs: "translate(-50%,0)", md: "" },
+                  right: { xs: "50%", md: "-80px" },
+                  top: { xs: "100%", md: "50%" },
+                  transform: { xs: "translate(50%,-50%)", md: "none" },
                 }}
               >
                 <Typography
@@ -73,20 +92,16 @@ const index = () => {
             <Box
               sx={{
                 position: "relative",
-                background: "red",
                 height: "100%",
                 width: "100%",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
-              <Image
-                src={communityTwo}
-                alt="communities"
-                style={{ height: "700px", width: "100%" }}
-              />
+              <StyledImage src={communityTwo} alt="communities" />
               <Box
                 sx={{
                   display: "flex",
-                  height: "100px",
                   backgroundColor: "#fff",
                   boxShadow: "1px 1px 30px rgba(0, 0, 0, 0.3)",
                   width: "300px",
@@ -96,10 +111,9 @@ const index = () => {
                   borderRadius: "20px",
                   gap: 1,
                   position: "absolute",
-                  top: { md: "40px" },
+                  top: { xs: "100%", md: "40px" },
                   left: { xs: "50%", md: "-100px" },
-                  bottom: { xs: "-50px", md: "" },
-                  transform: { xs: "translate(-50%,0)", md: "" },
+                  transform: { xs: "translate(-50%,-50%)", md: "none" },
                 }}
               >
                 <Typography

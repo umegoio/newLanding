@@ -4,7 +4,13 @@ import React from "react";
 const AboutUsLayout = ({ left, right }) => {
   return (
     <>
-      <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          gap: { xs: 4, md: "" },
+        }}
+      >
         <Box
           sx={{
             flex: 1,
@@ -19,8 +25,9 @@ const AboutUsLayout = ({ left, right }) => {
           sx={{
             flex: 1,
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: { xs: "center", md: "flex-end" },
             alignItems: "center",
+            width: "100%",
           }}
         >
           {right()}

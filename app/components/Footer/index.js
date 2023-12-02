@@ -11,7 +11,7 @@ const index = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          mt: { xs: 7, md: 10 },
+          mt: { xs: 4, sm: 7, md: 10 },
         }}
       >
         <Typography variant="body1" color="white">

@@ -22,7 +22,7 @@ const index = () => {
         <Box
           sx={{
             display: "flex",
-            gap: 2,
+            gap: { xs: 4, md: 3, xl: 4 },
             justifyContent: "center",
             alignItems: "center",
             flexDirection: { xs: "column", md: "row" },

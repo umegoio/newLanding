@@ -1,4 +1,5 @@
-import { Box, Stack, Typography } from "@mui/material";
+"use client";
+import { Box, Stack, styled, Typography } from "@mui/material";
 import React from "react";
 import friending from "../../assets/friending.png";
 import ContentLayout from "../ContentLayout";
@@ -8,6 +9,26 @@ import PeopleIcon from "@mui/icons-material/People";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 
 const Frinding = () => {
+  const StyledImage = styled(Image)(({ theme }) => ({
+    [theme.breakpoints.up("lg")]: {
+      height: "700px !important",
+      objectFit: "contain",
+    },
+    [theme.breakpoints.down("lg")]: {
+      height: "700px !important",
+      objectFit: "contain",
+    },
+    [theme.breakpoints.down("md")]: {
+      height: "500px !important",
+      objectFit: "fill",
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: "330px !important",
+      width: "100% !important",
+      objectFit: "contain",
+    },
+  }));
+
   return (
     <>
       <ContentLayout
@@ -21,17 +42,21 @@ const Frinding = () => {
             width: "100%",
           }}
         >
-          <Image alt="friending" src={friending} height={700} />
+          <StyledImage
+            alt="friending"
+            src={friending}
+            height={700}
+            style={{ width: "100%" }}
+          />
           <Box
             sx={{
               display: "flex",
               backgroundColor: "#fff",
               boxShadow: "1px 1px 30px rgba(0, 0, 0, 0.3)",
-              height: "100px",
-              width: "300px",
+              width: { xs: "150px", sm: "300px" },
               overflow: "hidden",
               boxSizing: "content-box",
-              padding: "14px",
+              padding: { xs: "8px", sm: "10px", md: "14px" },
               borderRadius: "20px",
               gap: 1,
               position: "absolute",
@@ -46,7 +71,15 @@ const Frinding = () => {
                 mt: 0.4,
               }}
             />
-            <Typography variant="h6" component="div" letterSpacing={1.2}>
+            <Typography
+              variant="h6"
+              component="div"
+              letterSpacing={1.2}
+              sx={{
+                fontSize: { xs: "14px", sm: "18px", md: "20px" },
+                wordBreak: "break-all",
+              }}
+            >
               Share your activity plans and invite others to join the fun.
             </Typography>
           </Box>
@@ -56,15 +89,15 @@ const Frinding = () => {
               display: "flex",
               backgroundColor: "#fff",
               boxShadow: "1px 1px 30px rgba(0, 0, 0, 0.3)",
-              width: "300px",
+              width: { xs: "150px", sm: "300px" },
               overflow: "hidden",
               boxSizing: "content-box",
-              padding: "14px",
+              padding: { xs: "8px", sm: "10px", md: "14px" },
               borderRadius: "20px",
               gap: 1,
               position: "absolute",
               top: "0",
-              right: "0",
+              right: { xs: 0, md: "60px", lg: "120px" },
             }}
           >
             <PeopleIcon
@@ -73,7 +106,15 @@ const Frinding = () => {
                 mt: 0.4,
               }}
             />
-            <Typography variant="h6" component="div" letterSpacing={1.2}>
+            <Typography
+              variant="h6"
+              component="div"
+              letterSpacing={1.2}
+              sx={{
+                fontSize: { xs: "14px", sm: "18px", md: "20px" },
+                wordBreak: "break-all",
+              }}
+            >
               Discover and connect with like-minded people
             </Typography>
           </Box>
@@ -83,16 +124,15 @@ const Frinding = () => {
               display: "flex",
               backgroundColor: "#fff",
               boxShadow: "1px 1px 30px rgba(0, 0, 0, 0.3)",
-              height: "100px",
-              width: "300px",
+              width: { xs: "150px", sm: "300px" },
               overflow: "hidden",
               boxSizing: "content-box",
-              padding: "14px",
+              padding: { xs: "8px", sm: "10px", md: "14px" },
               borderRadius: "20px",
               gap: 1,
               position: "absolute",
               bottom: "0",
-              right: "80px",
+              right: { xs: 0, md: "60px", lg: "120px" },
             }}
           >
             <LocalLibraryIcon
@@ -101,7 +141,15 @@ const Frinding = () => {
                 mt: 0.4,
               }}
             />
-            <Typography variant="h6" component="div" letterSpacing={1.2}>
+            <Typography
+              variant="h6"
+              component="div"
+              letterSpacing={1.2}
+              sx={{
+                fontSize: { xs: "14px", sm: "18px", md: "20px" },
+                wordBreak: "break-all",
+              }}
+            >
               Spot exciting activities shared by users and jump in!
             </Typography>
           </Box>

@@ -10,8 +10,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import SendIcon from "@mui/icons-material/Send";
 import {
   StyledEmailFooterText,
   StyledEmailFooterTextH6,
@@ -25,24 +24,21 @@ import {
   desktopTextStyle,
   mobileTextStyle,
 } from "./styles/EmailFooterStyles";
+import Image from "next/image";
 
 const EmailFooter = () => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"), {
     defaultMatches: true,
   });
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  console.log(isDesktop);
 
   return (
     <>
       <Box
         my={2}
         py={{ xs: 1, md: 3 }}
-        mt={{ xs: 7, md: 14 }}
+        mt={{ xs: 4, sm: 7, md: 14 }}
         sx={{
           position: "relative",
           overflow: "hidden",
@@ -132,14 +128,11 @@ const EmailFooter = () => {
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton sx={StylesSendImage}>
-                      {/* <Image
-                        src={SendSvg}
-                        alt={"footer ad"}
+                      <SendIcon
                         height={20}
                         width={20}
-                        placeholder="blur"
-                        blurDataURL={BlurImg.blurDataURL}
-                      ></Image> */}
+                        sx={{ color: "white" }}
+                      />
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -148,7 +141,7 @@ const EmailFooter = () => {
           )}
         </Box>
       </Box>
-      <Box mt={{ xs: 7, md: 10 }}>
+      <Box mt={{ xs: 4, sm: 7, md: 10 }}>
         <Typography variant="body1" textAlign={{ xs: "left", md: "center" }}>
           By entering your email in this contest, you agree to the following
           terms: This contest is open to individuals 18 years or older residing

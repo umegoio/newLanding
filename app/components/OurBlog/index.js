@@ -1,11 +1,19 @@
-import { Box, Stack } from "@mui/material";
+"use client";
+import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import ContentLayout from "../ContentLayout";
 import blogImage from "../../assets/blogImage.png";
+import blogImageLandscape from "../../assets/blogImageLandscape.png";
 import BlogItems from "./BlogItems";
 
-const index = () => {
+const OurBlog = () => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("sm"), {
+    defaultMatches: true,
+  });
+  console.log(isDesktop);
+
   return (
     <>
       <Box mt={{ xs: 14, md: 0 }} />
@@ -18,14 +26,33 @@ const index = () => {
             display: "flex",
             justifyContent: "center",
             flexDirection: { xs: "column", md: "row" },
-            mt: { xs: 4, md: 8 },
-            px: { xs: 0, sm: 4, md: 8 },
-            gap: { md: 6 },
+            mt: { xs: 0, sm: 2, md: 8 },
+            px: { xs: 0, sm: 4 },
+            gap: { xs: 0, md: 3 },
           }}
         >
-          <Stack flex={1} sx={{ alignItems: "center" }}>
-            <Box mb={3} sx={{ alignSelf: "center" }}>
-              <Image src={blogImage} alt="blogImage" height={600} />
+          <Stack
+            flex={1}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              mb={{ xs: 0, md: 3 }}
+              sx={{
+                alignSelf: "center",
+                width: { xs: "100%", sm: "" },
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                src={isDesktop ? blogImage : blogImageLandscape}
+                alt="blogImage"
+                height={isDesktop ? 550 : 300}
+                style={{ width: isDesktop ? "" : "100%" }}
+              />
             </Box>
           </Stack>
           <Stack flex={1} mt={{ xs: 4, md: 0 }}>
@@ -37,4 +64,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default OurBlog;

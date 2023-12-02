@@ -8,27 +8,27 @@ import Image from "next/image";
 
 const Header = () => {
   const StyledImage = styled(Image)(({ theme }) => ({
+    [theme.breakpoints.up("md")]: {
+      height: "480px",
+    },
     [theme.breakpoints.down("md")]: {
       height: "380px",
     },
-    [theme.breakpoints.up("md")]: {
-      height: "680px",
+    [theme.breakpoints.down("sm")]: {
+      height: "320px",
     },
   }));
 
   return (
     <>
-      <Box sx={{ position: "relative", height: { xs: "500px", md: "620px" } }}>
+      <Box sx={{ position: "relative" }}>
         <Box
           sx={{
-            position: "absolute",
-            left: "50%",
-            transform: "translate(-50%,0)",
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            mt: 4,
+            mt: { xs: 2, sm: 6 },
           }}
         >
           <Image src={logo} alt={"logo"} height={90} />
@@ -61,7 +61,7 @@ const Header = () => {
             <Box
               sx={{
                 background: "#4548E8",
-                padding: "15px 60px",
+                padding: "15px 16px",
                 borderRadius: "50px",
               }}
             >
@@ -89,7 +89,22 @@ const Header = () => {
           </Box>
         </Box>
 
-        <StyledImage src={headerImage} alt="decor" style={{ width: "100%" }} />
+        <Box
+          sx={{
+            position: "absolute",
+            left: "50%",
+            transform: "translate(-50%,0)",
+            top: 0,
+            width: "100%",
+            zIndex: "-1",
+          }}
+        >
+          <StyledImage
+            src={headerImage}
+            alt="decor"
+            style={{ width: "100%" }}
+          />
+        </Box>
       </Box>
     </>
   );
