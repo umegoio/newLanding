@@ -15,7 +15,7 @@ const index = () => {
         }}
       >
         <Typography variant="body1" color="white">
-          @ 2024 Umego Limited. All rights reserved.
+          @ 2023 Umego Limited. All rights reserved.
         </Typography>
       </Box>
     </>
