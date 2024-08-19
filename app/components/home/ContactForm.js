@@ -17,7 +17,16 @@ import icon1 from "../../assets/icon1.png";
 import { countries } from "../../constants/country";
 
 const ContactForm = () => {
-  const [isChecked, setIsChanged] = useState(false);
+  // const [isChecked, setIsChanged] = useState(false);
+  const initialState = {
+    name: "",
+    emailAddress: "",
+    country: "Singapore",
+    isChecked: false,
+  };
+
+  const [formData, setFormData] = useState(initialState);
+
   const StyledImage = styled(Image)(({ theme }) => ({
     [theme.breakpoints.up("xl")]: {
       height: "500px !important",
@@ -41,28 +50,35 @@ const ContactForm = () => {
     objectFit: "fill",
   }));
 
-  const handleChange = (e) => {
-    setIsChanged(e.target.checked);
+  const handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isChecked) {
+    if (!formData.isChecked) {
       alert("Please select the checkbox.");
       return;
     }
-    const name = e.target.elements.name.value;
-    const emailAddress = e.target.elements.emailAddress.value;
-    const country = e.target.elements.country.value;
-    if (!name) {
+
+    console.log("Form Data: ", formData);
+
+    const name = formData.name;
+    const emailAddress = formData.emailAddress;
+    const country = formData.country;
+    if (!formData.name) {
       alert("Name is required.");
       return;
     }
-    if (!emailAddress) {
+    if (!formData.emailAddress) {
       alert("Email is required.");
       return;
     }
-    if (!country) {
+    if (!formData.country) {
       alert("Country is required.");
       return;
     }
@@ -75,7 +91,7 @@ const ContactForm = () => {
 
     //make a newtwork request here
     try {
-      fetch("https://api.umego.io/api/subscriptions/userSubscription", {
+      fetch("https://server.umego.io/api/subscriptions/userSubscription", {
         method: "POST",
 
         headers: {
@@ -86,10 +102,8 @@ const ContactForm = () => {
         .then((response) => response.json())
         .then((data) => {
           alert("You have successfully submitted.");
-          e.target.elements.name.value = "";
-          e.target.elements.emailAddress.value = "";
-          e.target.elements.country.value = "";
-        });
+        })
+        .then(() => setFormData(initialState));
     } catch (error) {
       alert(`${error.message}`);
     }
@@ -163,6 +177,8 @@ const ContactForm = () => {
                   }
                   type="text"
                   fullWidth
+                  value={formData.name}
+                  onChange={handleChange}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -182,6 +198,8 @@ const ContactForm = () => {
                     </Typography>
                   }
                   fullWidth
+                  value={formData.emailAddress}
+                  onChange={handleChange}
                   type="text"
                   InputLabelProps={{
                     shrink: true,
@@ -204,6 +222,8 @@ const ContactForm = () => {
                     id="standard-number"
                     defaultValue="Singapore"
                     fullWidth
+                    value={formData.country}
+                    onChange={handleChange}
                     type="text"
                     InputLabelProps={{
                       shrink: true,
@@ -222,8 +242,9 @@ const ContactForm = () => {
               <Box>
                 <input
                   type="checkbox"
+                  name="isChecked"
                   onChange={handleChange}
-                  checked={isChecked}
+                  checked={formData.isChecked}
                 />
                 <Typography component="span">
                   {"  "}I agree to the contest terms and conditions.
@@ -241,8 +262,9 @@ const ContactForm = () => {
                     },
                   }}
                   type="submit"
+                  onClick={handleSubmit}
                 >
-                  Submit -{">"}
+                  Submit {">"}
                 </Button>
               </Box>
             </Stack>
